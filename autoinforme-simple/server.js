@@ -268,12 +268,13 @@ app.post('/api/invitations', (req, res) => {
 });
 
 // Validar token de invitación
-app.get('/api/validate-token/:token', (req, res) => {
+app.post("/api/validate-token/:token", (req, res) => {
+  const { email } = req.body;
   const { token } = req.params;
 
   db.get(
-    'SELECT * FROM invitations WHERE token = ? AND used = 0',
-    [token],
+    'SELECT * FROM invitations WHERE token = ? AND email = ? AND used = 0',
+    [token, email],
     (err, row) => {
       if (err || !row) {
         return res.status(400).json({ error: 'Token inválido o expirado' });
@@ -515,6 +516,19 @@ app.get("/admin", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "admin.html"));
 });
 
+// Servir página de prueba de carga de archivos
+app.post("/api/test-upload", upload.single("test_file"), (req, res) => {
+  console.log("Test Upload - Body:", req.body);
+  console.log("Test Upload - File:", req.file);
+  if (req.file) {
+    res.json({ message: "Archivo de prueba subido exitosamente", filename: req.file.filename });
+  } else {
+    res.status(400).json({ error: "No se adjuntó ningún archivo" });
+  }
+});
+app.get("/test_upload.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "test_upload.html"));
+});
 
 // Iniciar servidor
 app.listen(PORT, () => {

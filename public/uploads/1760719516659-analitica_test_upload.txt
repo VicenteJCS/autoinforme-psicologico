@@ -1,0 +1,1 @@
+Contenido de la analítica de prueba para test_upload.

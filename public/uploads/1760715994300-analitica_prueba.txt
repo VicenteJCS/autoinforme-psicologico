@@ -1,0 +1,13 @@
+Analítica de prueba - Resultados de laboratorio
+Fecha: 17/10/2025
+Paciente: Paciente Final
+
+Hemograma completo:
+- Hemoglobina: 14.5 g/dL
+- Leucocitos: 7,500/μL
+- Plaquetas: 250,000/μL
+
+Bioquímica:
+- Glucosa: 95 mg/dL
+- Colesterol total: 180 mg/dL
+- Triglicéridos: 120 mg/dL

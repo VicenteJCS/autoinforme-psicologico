@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test File Upload</title>
+</head>
+<body>
+  <h1>Test File Upload</h1>
+  <form id="uploadForm" enctype="multipart/form-data">
+    <input type="hidden" name="token" value="test-token">
+    <input type="file" name="analytics_file" id="analytics_file" required>
+    <button type="submit">Upload</button>
+  </form>
+
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      
+      const formData = new FormData();
+      const fileInput = document.getElementById('analytics_file');
+      
+      formData.append('token', 'test-token'); // Add a test token
+      if (fileInput.files.length > 0) {
+        formData.append('analytics_file', fileInput.files[0]);
+      }
+
+      try {
+        const response = await fetch('/api/assessments', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (response.ok) {
+          alert('File uploaded successfully!');
+        } else {
+          const error = await response.text();
+          alert('Upload failed: ' + error);
+        }
+      } catch (error) {
+        alert('An error occurred: ' + error.message);
+      }
+    });
+  </script>
+</body>
+</html>
+

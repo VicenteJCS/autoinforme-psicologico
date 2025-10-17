@@ -1,0 +1,18 @@
+nohup: ignoring input
+
+> autoinforme-simple@1.0.0 start
+> node server.js
+
+Servidor ejecutándose en puerto 3000
+POST /api/assessments - Body: [Object: null prototype] { token: 'test-token' }
+POST /api/assessments - File: {
+  fieldname: 'analytics_file',
+  originalname: 'analitica_test_upload.txt',
+  encoding: '7bit',
+  mimetype: 'text/plain',
+  destination: './public/uploads/',
+  filename: '1760719516659-analitica_test_upload.txt',
+  path: 'public/uploads/1760719516659-analitica_test_upload.txt',
+  size: 54
+}
+Terminated

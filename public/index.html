@@ -411,13 +411,15 @@
       <div class="form-group">
         <label>¿Dispones de analíticas recientes o informes médicos?</label>
         <div class="checkbox-group">
-          <label><input type="checkbox" id="analyticsYes" onchange="toggleAnalyticsDetails()"> Sí</label>
-          <label><input type="checkbox" id="analyticsNo" onchange="toggleAnalyticsDetails()"> No</label>
+          <label><input type="radio" name="analyticsOption" id="analyticsYes" value="yes" onchange="toggleAnalyticsDetails()"> Sí</label>
+          <label><input type="radio" name="analyticsOption" id="analyticsNo" value="no" onchange="toggleAnalyticsDetails()"> No</label>
         </div>
         <div class="conditional-field" id="analyticsDetails">
           <div class="form-group">
-            <label for="analyticsContent">Resultados Relevantes</label>
-            <textarea id="analyticsContent" placeholder="Describe brevemente los resultados más relevantes"></textarea>
+            <label for="analyticsResults">Resultados Relevantes</label>
+            <textarea id="analyticsResults" placeholder="Describe los resultados más relevantes"></textarea>
+            <label for="analyticsFile" style="margin-top: 15px;">Adjuntar Analíticas (opcional)</label>
+            <input type="file" id="analyticsFile" accept=".pdf,.jpg,.png"/>
           </div>
         </div>
       </div>
@@ -430,23 +432,21 @@
 
     <!-- SECCIÓN 3: CUESTIONARIOS -->
     <div class="section" id="section-questionnaires">
-      <h2 class="section-title" id="questionnaireTitle">Sección 1 de 7</h2>
-      <p style="margin-bottom: 20px; color: #666;" id="questionnaireInstructions"></p>
+      <h2 class="section-title" id="questionnaireTitle"></h2>
       <div id="questionsContainer"></div>
       <div class="button-group">
-        <button class="button button-secondary" id="prevBtn" onclick="previousQuestionnaire()" style="display: none;">Anterior</button>
-        <button class="button" id="nextBtn" onclick="nextQuestionnaire()">Siguiente</button>
+        <button class="button button-secondary" onclick="prevQuestionnaire()">Anterior</button>
+        <button class="button" onclick="nextQuestionnaire()">Siguiente</button>
       </div>
     </div>
 
     <!-- SECCIÓN 4: RESULTADOS -->
     <div class="section" id="section-results">
-      <h2 class="section-title">Resultados de tu Evaluación</h2>
+      <h2 class="section-title">Resultados de la Evaluación</h2>
       <div id="resultsContainer"></div>
-      <div class="button-group">
-        <button class="button" onclick="downloadReport()">Descargar Informe</button>
-      </div>
+      <button class="button" onclick="downloadReport()" style="margin-top: 20px;">Descargar Informe</button>
     </div>
+
   </div>
 
   <script>
@@ -484,15 +484,13 @@
     }
 
     function toggleAnalyticsDetails() {
-      const yes = document.getElementById('analyticsYes').checked;
-      const no = document.getElementById('analyticsNo').checked;
-      const details = document.getElementById('analyticsDetails');
+      const yesCheckbox = document.getElementById("analyticsYes");
+      const details = document.getElementById("analyticsDetails");
       
-      if (yes) {
-        document.getElementById('analyticsNo').checked = false;
-        details.classList.add('visible');
-      } else if (!no) {
-        details.classList.remove('visible');
+      if (yesCheckbox.checked) {
+        details.classList.add("visible");
+      } else {
+        details.classList.remove("visible");
       }
     }
 
@@ -510,7 +508,8 @@
       const diet = document.getElementById('diet').value;
       const exercise = `${document.getElementById('exerciseYes').checked ? 'Sí - ' : 'No'}${document.getElementById('exerciseType').value ? document.getElementById('exerciseType').value : ''}`;
       const supplements = document.getElementById('supplements').value;
-      const analytics = document.getElementById('analyticsContent').value;
+      const analytics = document.getElementById('analyticsResults').value;
+      const analyticsFile = document.getElementById('analyticsFile').files[0];
 
       if (!patientName || !age || !gender || !consultationReason) {
         showError('Por favor completa todos los campos requeridos');
@@ -520,27 +519,30 @@
       showLoading(true);
 
       try {
+        const formData = new FormData();
+        formData.append('token', currentToken);
+        formData.append('patient_name', patientName);
+        formData.append('age', parseInt(age));
+        formData.append('gender', gender);
+        formData.append('marital_status', maritalStatus);
+        formData.append('occupation', occupation);
+        formData.append('email', currentToken);
+        formData.append('consultation_reason', consultationReason);
+        formData.append('medications', medications);
+        formData.append('medical_history', medicalHistory);
+        formData.append('allergies', allergies);
+        formData.append('traumas', traumas);
+        formData.append('diet', diet);
+        formData.append('exercise', exercise);
+        formData.append('supplements', supplements);
+        formData.append('analytics', analytics);
+        if (analyticsFile) {
+          formData.append('analytics_file', analyticsFile);
+        }
+
         const response = await fetch('/api/assessments', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            token: currentToken,
-            patient_name: patientName,
-            age: parseInt(age),
-            gender,
-            marital_status: maritalStatus,
-            occupation,
-            email: currentToken,
-            consultation_reason: consultationReason,
-            medications,
-            medical_history: medicalHistory,
-            allergies,
-            traumas,
-            diet,
-            exercise,
-            supplements,
-            analytics
-          })
+          body: formData
         });
 
         const data = await response.json();
@@ -565,76 +567,54 @@
 
     function showQuestionnaire() {
       const q = questionnaires[currentQuestionnaireIndex];
-      document.getElementById('questionnaireTitle').textContent = `Sección ${currentQuestionnaireIndex + 1} de ${questionnaires.length}`;
-      document.getElementById('questionnaireInstructions').textContent = 'Por favor, responde las siguientes preguntas de forma honesta.';
+      document.getElementById('questionnaireTitle').innerText = q.name;
+      const container = document.getElementById('questionsContainer');
+      container.innerHTML = '';
 
-      let html = '';
       q.questions.forEach((question, index) => {
-        const scale = q.scale;
-        html += `
-          <div class="form-group">
-            <div class="question-number">Pregunta ${index + 1} de ${q.questions.length}</div>
-            <label>${question}</label>
-            <div class="scale-options">
-        `;
-        for (let i = scale.min; i <= scale.max; i++) {
-          const label = scale.labels[i - scale.min];
-          const key = `${q.id}-${index}`;
-          html += `
+        let optionsHtml = '<div class="scale-options">';
+        question.options.forEach((option, i) => {
+          const isChecked = answers[q.id] && answers[q.id][index] === i;
+          optionsHtml += `
             <div class="scale-option">
-              <input type="radio" id="${key}-${i}" name="${key}" value="${i}" onchange="recordAnswer('${q.id}', ${index}, ${i})">
-              <label for="${key}-${i}">${label}</label>
+              <input type="radio" id="q${index}o${i}" name="q${index}" value="${i}" ${isChecked ? 'checked' : ''}>
+              <label for="q${index}o${i}">${option}</label>
             </div>
           `;
-        }
-        html += `</div></div>`;
+        });
+        optionsHtml += '</div>';
+
+        container.innerHTML += `
+          <div class="form-group">
+            <p class="question-number">Pregunta ${index + 1} de ${q.questions.length}</p>
+            <label>${question.text}</label>
+            ${optionsHtml}
+          </div>
+        `;
       });
 
-      document.getElementById('questionsContainer').innerHTML = html;
-
-      // Restaurar respuestas previas
-      if (answers[q.id]) {
-        answers[q.id].forEach((value, index) => {
-          const key = `${q.id}-${index}-${value}`;
-          const element = document.getElementById(key);
-          if (element) element.checked = true;
+      document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          const questionIndex = parseInt(e.target.name.replace('q', ''));
+          if (!answers[q.id]) answers[q.id] = [];
+          answers[q.id][questionIndex] = parseInt(e.target.value);
         });
-      }
-
-      document.getElementById('prevBtn').style.display = currentQuestionnaireIndex > 0 ? 'block' : 'none';
-      document.getElementById('nextBtn').textContent = currentQuestionnaireIndex === questionnaires.length - 1 ? 'Finalizar' : 'Siguiente';
+      });
     }
 
-    function recordAnswer(questionnaireId, questionIndex, value) {
-      if (!answers[questionnaireId]) {
-        answers[questionnaireId] = [];
-      }
-      answers[questionnaireId][questionIndex] = value;
-    }
-
-    async function nextQuestionnaire() {
-      const q = questionnaires[currentQuestionnaireIndex];
-      const answered = answers[q.id] && answers[q.id].length === q.questions.length;
-
-      if (!answered) {
-        showError('Por favor responde todas las preguntas');
-        return;
-      }
-
-      if (currentQuestionnaireIndex === questionnaires.length - 1) {
-        await finishQuestionnaires();
-      } else {
+    function nextQuestionnaire() {
+      if (currentQuestionnaireIndex < questionnaires.length - 1) {
         currentQuestionnaireIndex++;
         showQuestionnaire();
-        updateProgress(2 + (currentQuestionnaireIndex / questionnaires.length));
+      } else {
+        finishQuestionnaires();
       }
     }
 
-    function previousQuestionnaire() {
+    function prevQuestionnaire() {
       if (currentQuestionnaireIndex > 0) {
         currentQuestionnaireIndex--;
         showQuestionnaire();
-        updateProgress(2 + (currentQuestionnaireIndex / questionnaires.length));
       }
     }
 
@@ -719,10 +699,15 @@
     }
 
     function showError(message) {
-      const el = document.getElementById('errorMessage');
-      el.textContent = message;
-      el.style.display = 'block';
-      setTimeout(() => el.style.display = 'none', 5000);
+      const errorDiv = document.getElementById('errorMessage');
+      errorDiv.innerText = message;
+      errorDiv.style.display = 'block';
+    }
+
+    function showSuccess(message) {
+      const successDiv = document.getElementById('successMessage');
+      successDiv.innerText = message;
+      successDiv.style.display = 'block';
     }
 
     function showLoading(show) {
@@ -731,8 +716,9 @@
 
     function goBack() {
       showSection('section-token');
-      updateProgress(0.5);
+      updateProgress(0);
     }
+
   </script>
 </body>
 </html>
