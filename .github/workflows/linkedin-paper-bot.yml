@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: '17 8 * * *'
   workflow_dispatch:
+  push:
+    paths:
+      - 'linkedin-paper-bot/**'
+      - '.github/workflows/linkedin-paper-bot.yml'
 
 permissions:
   contents: write
@@ -26,6 +30,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
+      - name: Validate Buffer connection
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+        run: python linkedin-paper-bot/check_buffer.py
 
       - name: Detect new papers and schedule LinkedIn post
         env:
