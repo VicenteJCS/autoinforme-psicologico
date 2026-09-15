@@ -1,13 +1,14 @@
-name: LinkedIn paper bot
+name: LinkedIn paper bot repair
 
 on:
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
-  paused-during-repair:
+  cleanup-buffer-queue:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "LinkedIn bot paused while historical queue is repaired"
+      - uses: actions/checkout@v4
+      - name: Remove historical posts queued during testing
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+        run: python linkedin-paper-bot/cleanup_scheduled.py
