@@ -1,0 +1,50 @@
+name: LinkedIn paper bot
+
+on:
+  schedule:
+    - cron: '17 8 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: linkedin-paper-bot
+  cancel-in-progress: false
+
+jobs:
+  check-and-post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Detect new papers and schedule LinkedIn post
+        env:
+          AUTHOR_ORCID: '0000-0002-2397-2801'
+          CROSSREF_MAILTO: 'vctxente@yahoo.es'
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_CHANNEL_ID: ${{ secrets.BUFFER_CHANNEL_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: 'gemini-2.5-flash-lite'
+        run: python linkedin-paper-bot/bot.py
+
+      - name: Persist bot state
+        run: |
+          if git diff --quiet -- linkedin-paper-bot/state.json; then
+            echo "No state change to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add linkedin-paper-bot/state.json
+          git commit -m "Update LinkedIn paper bot state"
+          git push
