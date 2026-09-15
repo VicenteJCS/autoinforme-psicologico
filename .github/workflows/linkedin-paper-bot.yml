@@ -19,7 +19,7 @@ concurrency:
 jobs:
   check-and-post:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,6 +30,24 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: 'linkedin-paper-bot/requirements.txt'
+
+      - name: Install translation dependency
+        run: pip install -r linkedin-paper-bot/requirements.txt
+
+      - name: Test offline English-Spanish translation
+        if: github.event_name == 'push'
+        run: |
+          python - <<'PY'
+          import sys
+          sys.path.insert(0, 'linkedin-paper-bot')
+          import auto_post
+          text = auto_post.translate_to_spanish('This study evaluated stress in military personnel.')
+          print('Translation test:', text)
+          if not text or text.startswith('This study'):
+              raise SystemExit('English-Spanish translation was not available')
+          PY
 
       - name: Validate Buffer connection
         env:
@@ -42,9 +60,7 @@ jobs:
           CROSSREF_MAILTO: 'vctxente@yahoo.es'
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_CHANNEL_ID: ${{ secrets.BUFFER_CHANNEL_ID }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: 'gemini-2.5-flash-lite'
-        run: python linkedin-paper-bot/bot.py
+        run: python linkedin-paper-bot/auto_post.py
 
       - name: Persist bot state
         run: |
