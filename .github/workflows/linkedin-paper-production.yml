@@ -16,6 +16,7 @@ jobs:
   check-and-publish:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,8 +27,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          cache: 'pip'
-          cache-dependency-path: 'linkedin-paper-bot/requirements.txt'
 
       - name: Validate Buffer connection
         env:
@@ -44,14 +43,16 @@ jobs:
         run: python linkedin-paper-bot/production_safe.py
 
       - name: Persist bot state
-        if: always()
+        if: success()
         run: |
           if git diff --quiet -- linkedin-paper-bot/state.json; then
             echo "No state change to commit."
             exit 0
           fi
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add linkedin-paper-bot/state.json
           git commit -m "Update LinkedIn paper bot state"
           git push
