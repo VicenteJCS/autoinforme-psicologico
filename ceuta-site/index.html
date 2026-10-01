@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex,nofollow">
+  <title>CEUTA · Evaluación psicofisiológica, cognitiva y funcional</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="mark">CEUTA</div>
+      <div>
+        <div class="brand-title">Impacto de la crisis migratoria de Ceuta</div>
+        <div class="brand-sub">Evaluación psicofisiológica, cognitiva y funcional · Personal militar</div>
+      </div>
+    </div>
+    <div class="progress-wrap" aria-label="Progreso">
+      <div id="progressText">Inicio</div>
+      <div class="progress"><span id="progressFill"></span></div>
+    </div>
+  </header>
+
+  <main id="app" class="shell">
+    <section id="welcome" class="card hero">
+      <p class="eyebrow">ESTUDIO DE INVESTIGACIÓN</p>
+      <h1>Evaluación del impacto de la crisis migratoria de Ceuta</h1>
+      <p class="lead">Esta evaluación estudia estrés, burnout, sueño, fatiga, carga percibida, impacto sobre la vida diaria y preparación operativa, junto con pruebas objetivas de atención y rendimiento cognitivo.</p>
+      <div class="hero-grid">
+        <div><strong>Duración aproximada</strong><span>18–25 min</span></div>
+        <div><strong>Formato</strong><span>Cuestionario + pruebas cognitivas</span></div>
+        <div><strong>Acceso</strong><span>Móvil, tableta u ordenador</span></div>
+        <div><strong>Datos</strong><span>Sin nombre, DNI ni TIM</span></div>
+      </div>
+      <div class="notice">
+        <strong>Importante.</strong> Realice la evaluación en un lugar tranquilo, sin interrupciones, y no conduzca ni opere maquinaria durante las pruebas. Para los tiempos de reacción se recomienda usar el dispositivo que utilice habitualmente y mantenerlo en la misma orientación.
+      </div>
+      <label class="consent">
+        <input id="consentCheck" type="checkbox">
+        <span>He leído la información del estudio, participo voluntariamente y autorizo el tratamiento de los datos con fines de investigación de forma seudonimizada y agregada.</span>
+      </label>
+      <div class="actions end">
+        <button id="startBtn" class="btn primary" disabled>Comenzar evaluación</button>
+      </div>
+    </section>
+
+    <section id="survey" class="card hidden">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow" id="sectionKicker"></p>
+          <h2 id="sectionTitle"></h2>
+          <p id="sectionIntro" class="muted"></p>
+        </div>
+        <div class="step-pill" id="stepPill"></div>
+      </div>
+      <form id="questionForm" novalidate></form>
+      <div class="actions">
+        <button id="backBtn" type="button" class="btn ghost">Anterior</button>
+        <button id="nextBtn" type="button" class="btn primary">Continuar</button>
+      </div>
+      <div id="formError" class="error hidden"></div>
+    </section>
+
+    <section id="cogIntro" class="card hidden">
+      <p class="eyebrow">PRUEBAS OBJETIVAS</p>
+      <h2>Atención, vigilancia y discriminación</h2>
+      <p class="lead">A continuación realizará cuatro tareas breves. Antes de cada una aparecerán instrucciones y un ensayo de práctica cuando corresponda.</p>
+      <div class="task-list">
+        <div><span>01</span><strong>Vigilancia psicomotora</strong><small>Respuesta rápida a estímulos impredecibles</small></div>
+        <div><span>02</span><strong>Control inhibitorio</strong><small>Responder / inhibir una respuesta</small></div>
+        <div><span>03</span><strong>Discriminación y elección</strong><small>Velocidad y precisión de decisión</small></div>
+        <div><span>04</span><strong>Memoria de trabajo</strong><small>Mantenimiento de información y atención</small></div>
+      </div>
+      <div class="notice">Las pruebas registran milisegundos, aciertos, errores, variabilidad y pérdidas de foco de la pestaña. El tipo de dispositivo y navegador se registra para contextualizar el rendimiento.</div>
+      <div class="actions end"><button id="beginCogBtn" class="btn primary">Iniciar pruebas</button></div>
+    </section>
+
+    <section id="taskScreen" class="task-screen hidden" aria-live="polite">
+      <div class="task-top">
+        <div id="taskName"></div>
+        <div id="taskCounter"></div>
+      </div>
+      <div id="taskInstruction" class="task-instruction"></div>
+      <div id="stimulusArea" class="stimulus-area"></div>
+      <div id="taskControls" class="task-controls"></div>
+    </section>
+
+    <section id="finish" class="card hidden">
+      <p class="eyebrow">FINALIZACIÓN</p>
+      <h2>Evaluación completada</h2>
+      <p id="saveStatus" class="lead">Guardando los datos…</p>
+      <div id="participantCodeBox" class="code-box hidden">
+        <span>Código anónimo de participación</span>
+        <strong id="participantCode"></strong>
+      </div>
+      <div id="saveError" class="error hidden"></div>
+      <div class="actions end">
+        <button id="backupBtn" class="btn ghost hidden">Descargar copia local de seguridad</button>
+      </div>
+      <p class="fine">Los resultados individuales no constituyen un diagnóstico clínico ni una evaluación de aptitud. El análisis se realizará con fines de investigación y de forma agregada.</p>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
