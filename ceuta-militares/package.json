@@ -1,0 +1,18 @@
+{
+  "name": "ceuta-militares-study",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Plataforma web para el estudio del impacto psicofisiológico, cognitivo y funcional de la crisis migratoria de Ceuta en personal militar",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js"
+  },
+  "engines": {"node": ">=20"},
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "pg": "^8.16.3",
+    "uuid": "^13.0.0"
+  }
+}
