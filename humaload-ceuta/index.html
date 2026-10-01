@@ -129,7 +129,7 @@
   <div id="results"></div>
   <div class="card">
     <h2>Fin de la evaluación</h2>
-    <p class="small">El resumen se muestra únicamente en esta pantalla. No se solicita ni se almacena correo electrónico. En la versión desplegada, las respuestas se enviarán a la base de datos central usando exclusivamente el código aleatorio del participante.</p>
+    <p class="small">El resumen se muestra únicamente en esta pantalla. No se solicita ni se almacena correo electrónico. Al finalizar, esta versión piloto envía automáticamente las respuestas al receptor central de prueba usando exclusivamente el código aleatorio del participante.</p>
     <div class="nav"><button class="btn" onclick="downloadJSON()">Descargar registro JSON</button><button class="btn primary" onclick="finishStudy()">Finalizar evaluación</button></div>
     <div id="finishState" class="small" style="margin-top:10px"></div>
   </div>
@@ -190,9 +190,23 @@ function scheduleStim(){if(!pvt.running)return;document.getElementById('stim').t
 function respond(){if(!pvt.running)return;const now=performance.now();if(!pvt.stimOn){pvt.falseStarts++;document.getElementById('pvtMsg').textContent='Respuesta anticipada. Espere al estímulo.';clearTimeout(pvt.timeout);setTimeout(scheduleStim,700);return}const rt=now-pvt.stimAt;pvt.stimOn=false;if(rt<100)pvt.falseStarts++;else{pvt.rts.push(rt);pvt.trials.push({t_s:(now-pvt.started)/1000,rt_ms:rt,lapse355:rt>=355})}document.getElementById('stim').textContent=Math.round(rt);document.getElementById('pvtMsg').textContent='';setTimeout(scheduleStim,700)}
 document.getElementById('pvtStage').addEventListener('pointerdown',respond);window.addEventListener('keydown',e=>{if(e.code==='Space'&&pvt.running){e.preventDefault();respond()}});
 function endPVT(){pvt.running=false;pvt.completed=true;clearTimeout(pvt.timeout);document.getElementById('stim').textContent='Fin';document.getElementById('pvtMsg').textContent='Prueba completada.';const s=pvtSummary();document.getElementById('mMedian').textContent=s.median_rt_ms?Math.round(s.median_rt_ms)+' ms':'—';document.getElementById('mLapses').textContent=s.lapses_355;document.getElementById('mFalse').textContent=s.false_starts;document.getElementById('mCV').textContent=s.cv_rt!=null?s.cv_rt.toFixed(2):'—';document.getElementById('pvtMetrics').classList.remove('hidden');document.getElementById('toResults').disabled=false}
-function collect(){leaveSection(step);const s=scores(),pv=pvtSummary();const vals={};document.querySelectorAll('#s1 input,#s1 select,#s2 input,#s2 select,#s3 input,#s3 select').forEach(e=>{if(e.id)vals[e.id]=e.value});return {study:'HumaLoad-MIL Ceuta',version:'2026-10-01-no-email',participant_id:id,started_at:new Date(studyStart).toISOString(),completed_at:new Date().toISOString(),total_duration_s:(Date.now()-studyStart)/1000,section_duration_s:sectionTimes,profile_exposure:vals,scores:s,pvt:pv,pvt_trials:pvt.trials,device:{user_agent:navigator.userAgent,language:navigator.language,screen:`${screen.width}x${screen.height}`,pixel_ratio:devicePixelRatio,touch_points:navigator.maxTouchPoints||0,hardware_concurrency:navigator.hardwareConcurrency||null}}}
+function collect(){leaveSection(step);const s=scores(),pv=pvtSummary();const vals={};document.querySelectorAll('#s1 input,#s1 select,#s2 input,#s2 select,#s3 input,#s3 select').forEach(e=>{if(e.id)vals[e.id]=e.value});return {study:'HumaLoad-MIL Ceuta',version:'2026-10-01-pilot-central',participant_id:id,started_at:new Date(studyStart).toISOString(),completed_at:new Date().toISOString(),total_duration_s:(Date.now()-studyStart)/1000,section_duration_s:sectionTimes,profile_exposure:vals,scores:s,pvt:pv,pvt_trials:pvt.trials,device:{user_agent:navigator.userAgent,language:navigator.language,screen:`${screen.width}x${screen.height}`,pixel_ratio:devicePixelRatio,touch_points:navigator.maxTouchPoints||0,hardware_concurrency:navigator.hardwareConcurrency||null}}}
 function renderResults(){const s=scores(),pv=pvtSummary();const box=document.getElementById('results');box.innerHTML='';const items=[];items.push(['Estrés percibido · PSS-4',`${s.pss}/16`,pssRef(s.pss)]);items.push(['Ansiedad · GAD-2',`${s.gad}/6`,s.gad>=3?'La puntuación alcanza el umbral orientativo de cribado usado en la validación española. No equivale a un diagnóstico.':'La puntuación queda por debajo del umbral orientativo de cribado usado en la validación española.']);items.push(['Burnout · BAT-12',s.bat_mean.toFixed(2)+'/5','Puntuación media de síntomas de burnout. Se informa de forma descriptiva; no se clasifica como normal/anormal porque no se aplican aquí puntos de corte clínicos específicos para personal militar español.']);items.push(['Sueño · AIS-5',`${s.ais}/15`,'Mayor puntuación indica más dificultades nocturnas de sueño. Se evita aplicar un punto de corte diagnóstico no establecido de forma específica para esta versión y población.']);items.push(['Calidad de vida · EUROHIS-QOL-8',s.qol.toFixed(2)+'/5','Mayor puntuación indica mejor calidad de vida percibida. Se informa de forma descriptiva y debe interpretarse junto con la referencia poblacional elegida en el protocolo.']);items.push(['Atención sostenida · PVT-B',`${Math.round(pv.median_rt_ms||0)} ms mediana`,`${pv.lapses_355} lapsos (≥355 ms), ${pv.false_starts} falsas salidas. La interpretación depende del dispositivo, condiciones de administración y referencia del estudio; no es una prueba diagnóstica.`]);for(const x of items)box.innerHTML+=`<div class="result"><div class="small">${x[0]}</div><div class="score">${x[1]}</div><p>${x[2]}</p></div>`}
-function finishStudy(){document.getElementById('finishState').textContent='Evaluación finalizada. El resumen permanece visible en esta pantalla.'}
+const DATA_ENDPOINT='https://webhook.site/e81f4a07-b994-4916-aa6e-0266af1637d7';
+let submitted=false;
+async function finishStudy(){
+  const state=document.getElementById('finishState');
+  if(submitted){state.textContent='Datos de prueba enviados. Código: '+id;return}
+  state.textContent='Enviando datos de prueba…';
+  const rec=collect();
+  try{
+    await fetch(DATA_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(rec)});
+    submitted=true;
+    state.textContent='Datos de prueba enviados correctamente. Código: '+id;
+  }catch(err){
+    state.textContent='No se pudo enviar. Compruebe la conexión y pulse Finalizar evaluación de nuevo.';
+  }
+}
 function downloadJSON(){const rec=collect();const b=new Blob([JSON.stringify(rec,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`HumaLoadMIL_${id}.json`;a.click();URL.revokeObjectURL(a.href)}
 </script>
 </body>
