@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HumaLoad-MIL Ceuta | Estudio de impacto psicosocial y cognitivo</title>
+<style>
+:root{--bg:#0d1210;--p:#151c18;--p2:#1b241f;--line:#2b3a31;--tx:#eef3ef;--mut:#a8b4ad;--ac:#a8bf97;--warn:#d0ad6a;--bad:#d18383}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}header{position:sticky;top:0;z-index:10;background:#0d1210f5;border-bottom:1px solid var(--line);padding:14px 20px;display:flex;justify-content:space-between;align-items:center}.brand{font-weight:800;letter-spacing:.04em}.small{font-size:12px;color:var(--mut)}.wrap{max-width:1050px;margin:auto;padding:22px 16px 80px}.card{background:var(--p);border:1px solid var(--line);border-radius:14px;padding:20px;margin:16px 0}.step{display:none}.step.active{display:block}.topline{display:flex;gap:10px;align-items:center;justify-content:space-between}.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:5px 9px;color:var(--mut)}h1{font-size:30px;line-height:1.1;margin:8px 0 12px}h2{font-size:19px;margin:0 0 12px}h3{font-size:15px;margin:18px 0 8px;color:#dce6de}.lead{color:var(--mut);max-width:820px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}label{display:flex;flex-direction:column;gap:6px;color:var(--mut);font-size:12px}input,select,textarea{width:100%;padding:10px 11px;border-radius:8px;border:1px solid var(--line);background:#0f1511;color:var(--tx);font:inherit}input:focus,select:focus,textarea:focus{outline:1px solid var(--ac)}.radio-row{display:flex;flex-wrap:wrap;gap:8px;margin:7px 0 14px}.radio-row label{display:flex;flex-direction:row;align-items:center;gap:5px;border:1px solid var(--line);padding:7px 9px;border-radius:8px;color:var(--tx);cursor:pointer}.radio-row input{width:auto}.q{padding:13px 0;border-bottom:1px solid #26342c}.q:last-child{border-bottom:0}.q p{margin:0 0 8px}.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.scale.four{grid-template-columns:repeat(4,1fr)}.scale label{display:flex;align-items:center;text-align:center;justify-content:center;min-height:52px;background:var(--p2);border-radius:8px;padding:6px;color:var(--tx);cursor:pointer}.scale input{width:auto}.nav{display:flex;justify-content:space-between;gap:10px;margin-top:20px}.btn{padding:11px 16px;border-radius:9px;border:1px solid var(--line);background:transparent;color:var(--tx);font-weight:700;cursor:pointer}.btn.primary{background:var(--ac);border-color:var(--ac);color:#0d1210}.btn:disabled{opacity:.4;cursor:not-allowed}.progress{height:5px;background:#1a241e}.progress>div{height:100%;background:var(--ac);width:0}.note{padding:12px 14px;border-left:3px solid var(--warn);background:#1a1d17;color:#d9d0bc;border-radius:6px;font-size:13px}.ok{border-left-color:var(--ac);color:#dbe9d4}.pvt{height:310px;background:#060806;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;user-select:none;touch-action:manipulation}.pvt .stim{font:800 60px/1 monospace;min-height:70px}.pvt .msg{color:var(--mut);margin-top:16px;text-align:center}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}.metric{background:var(--p2);border-radius:8px;padding:10px}.metric span{display:block;font-size:11px;color:var(--mut)}.metric strong{font-size:17px}.result{padding:14px;border:1px solid var(--line);border-radius:10px;margin:10px 0;background:var(--p2)}.result .score{font-size:22px;font-weight:800}.result p{margin:5px 0;color:var(--mut)}.hidden{display:none!important}.timer{font-variant-numeric:tabular-nums}.req{color:#dca8a8}.footer{margin-top:32px;color:var(--mut);font-size:11px}@media(max-width:760px){.grid,.grid3{grid-template-columns:1fr}.scale{grid-template-columns:1fr}.scale label{min-height:auto;justify-content:flex-start;text-align:left}.metrics{grid-template-columns:1fr 1fr}h1{font-size:25px}}
+</style>
+</head>
+<body>
+<header><div><div class="brand">HumaLoad-MIL · Ceuta</div><div class="small">Impacto psicosocial y cognitivo asociado a la exposición a la crisis migratoria</div></div><div class="small timer" id="timer">00:00</div></header>
+<div class="progress"><div id="bar"></div></div>
+<main class="wrap">
+
+<section class="step active" data-step="0" id="s0">
+  <div class="topline"><span class="pill">Información y consentimiento</span><span class="small">Evaluación única</span></div>
+  <h1>Evaluación de personal militar de la Comandancia General de Ceuta</h1>
+  <p class="lead">El estudio analiza la relación entre la exposición a las actuaciones vinculadas con la crisis migratoria, las condiciones de servicio, el apoyo y contacto familiar, el descanso y el estado psicológico, la calidad de vida y la atención sostenida.</p>
+  <div class="card">
+    <h2>Antes de comenzar</h2>
+    <p>La participación es voluntaria. El resumen final es informativo y no constituye diagnóstico clínico. Las respuestas de investigación se almacenarán exclusivamente con un código aleatorio de participante, sin solicitar correo electrónico ni otros datos de contacto.</p>
+    <label class="radio-row" style="display:flex"><input type="checkbox" id="consent"> He leído la información del estudio y acepto participar.</label>
+    <div class="note">La versión definitiva para campo debe incorporar el texto de consentimiento aprobado por el comité de ética y el responsable del tratamiento de datos.</div>
+  </div>
+  <div class="nav"><span></span><button class="btn primary" onclick="nextStep()">Comenzar</button></div>
+</section>
+
+<section class="step" data-step="1" id="s1">
+  <div class="topline"><span class="pill">1 · Perfil militar</span><span class="small">Datos estructurales</span></div>
+  <h1>Perfil profesional y personal</h1>
+  <div class="card grid3">
+    <label>Edad <span class="req">*</span><input type="number" id="age" min="18" max="70"></label>
+    <label>Sexo <span class="req">*</span><select id="sex"><option value="">Seleccione</option><option>Hombre</option><option>Mujer</option><option>Otro / prefiero no indicar</option></select></label>
+    <label>Unidad <span class="req">*</span><select id="unit"><option value="">Seleccione</option><option>Cuartel General COMGECEU</option><option>Grupo de Regulares de Ceuta n.º 54</option><option>Tercio Duque de Alba 2.º de La Legión</option><option>Regimiento de Caballería Montesa n.º 3</option><option>Regimiento Mixto de Artillería n.º 30</option><option>Regimiento de Ingenieros n.º 7</option><option>Unidad Logística n.º 23</option><option>Batallón de Cuartel General COMGECEU</option><option>Otra UCO vinculada a COMGECEU</option></select></label>
+    <label>Categoría <span class="req">*</span><select id="category"><option value="">Seleccione</option><option>Oficial general</option><option>Oficial</option><option>Suboficial</option><option>Tropa</option></select></label>
+    <label>Empleo <span class="req">*</span><select id="rank"><option value="">Seleccione categoría primero</option></select></label>
+    <label>Años de servicio en FAS<input type="number" id="years_service" min="0" max="50" step="0.5"></label>
+    <label>Años en la unidad actual<input type="number" id="years_unit" min="0" max="50" step="0.5"></label>
+    <label>Años destinado en Ceuta<input type="number" id="years_ceuta" min="0" max="50" step="0.5"></label>
+    <label>Función principal actual<select id="role"><option value="">Seleccione</option><option>Mando / planeamiento</option><option>Intervención / seguridad directa</option><option>Patrulla / vigilancia</option><option>Apoyo de combate</option><option>Logística / mantenimiento</option><option>Sanidad</option><option>Transmisiones / mando y control</option><option>Administración / apoyo</option><option>Otra</option></select></label>
+    <label>Situación familiar<select id="family_status"><option value="">Seleccione</option><option>Sin pareja</option><option>Con pareja, sin hijos</option><option>Con pareja e hijos</option><option>Sin pareja, con hijos</option><option>Otra</option><option>Prefiero no indicar</option></select></label>
+    <label>Personas dependientes a cargo<input type="number" id="dependents" min="0" max="15"></label>
+  </div>
+  <div class="nav"><button class="btn" onclick="prevStep()">Atrás</button><button class="btn primary" onclick="nextStep()">Continuar</button></div>
+</section>
+
+<section class="step" data-step="2" id="s2">
+  <div class="topline"><span class="pill">2 · Exposición a la crisis</span><span class="small">Carga operativa</span></div>
+  <h1>Exposición y carga de servicio</h1>
+  <p class="lead">Se registran por separado la exposición acumulada y la carga reciente. Esto permite comparar militares con distinta duración de participación.</p>
+  <div class="card grid3">
+    <label>Fecha de primera participación<input type="date" id="first_exposure"></label>
+    <label>Salidas/servicios relacionados en últimos 30 días<input type="number" id="sorties30" min="0" max="300"></label>
+    <label>Horas totales relacionadas en últimos 30 días<input type="number" id="hours30" min="0" max="744" step="0.5"></label>
+    <label>Salidas/servicios desde su primera participación<input type="number" id="sorties_total" min="0" max="10000"></label>
+    <label>Duración media de una salida (h)<input type="number" id="sortie_mean_h" min="0" max="72" step="0.25"></label>
+    <label>Duración máxima de una salida (h)<input type="number" id="sortie_max_h" min="0" max="120" step="0.25"></label>
+    <label>Servicios nocturnos últimos 30 días<input type="number" id="night30" min="0" max="60"></label>
+    <label>Días sin descanso completo últimos 30 días<input type="number" id="no_rest30" min="0" max="30"></label>
+    <label>Horas de sueño promedio/día últimos 7 días<input type="number" id="sleep_hours7" min="0" max="14" step="0.25"></label>
+    <label>Intensidad media de las actuaciones (0–10)<input type="number" id="intensity" min="0" max="10" step="1"></label>
+    <label>Dificultad media percibida (0–10)<input type="number" id="difficulty" min="0" max="10" step="1"></label>
+    <label>Imprevisibilidad de las actuaciones (0–10)<input type="number" id="unpredictability" min="0" max="10" step="1"></label>
+  </div>
+  <div class="card">
+    <h2>Exposición a incidentes</h2>
+    <div class="grid3">
+      <label>Agresiones físicas sufridas<input type="number" id="physical_aggr" min="0" max="999"></label>
+      <label>Amenazas/intimidaciones directas<input type="number" id="threats" min="0" max="999"></label>
+      <label>Insultos/agresiones verbales directas<input type="number" id="verbal_aggr" min="0" max="999"></label>
+      <label>Incidentes violentos presenciados<input type="number" id="witnessed_violence" min="0" max="999"></label>
+      <label>¿Ha sufrido lesión física relacionada?<select id="injury"><option value="">Seleccione</option><option>No</option><option>Sí, leve</option><option>Sí, requirió atención sanitaria</option></select></label>
+      <label>Percepción de seguridad durante el servicio (0=nada; 10=total)<input type="number" id="safety_service" min="0" max="10"></label>
+    </div>
+  </div>
+  <div class="nav"><button class="btn" onclick="prevStep()">Atrás</button><button class="btn primary" onclick="nextStep()">Continuar</button></div>
+</section>
+
+<section class="step" data-step="3" id="s3">
+  <div class="topline"><span class="pill">3 · Familia y recuperación</span><span class="small">Moduladores</span></div>
+  <h1>Contacto familiar, permisos y recuperación</h1>
+  <div class="card grid3">
+    <label>¿Su núcleo familiar vive habitualmente en Ceuta?<select id="family_ceuta"><option value="">Seleccione</option><option>Sí</option><option>No</option><option>No aplica / no tengo núcleo familiar</option></select></label>
+    <label>Distancia habitual respecto al núcleo familiar<select id="family_distance"><option value="">Seleccione</option><option>Misma vivienda</option><option>Misma ciudad</option><option>Otra localidad de España</option><option>Otro país</option><option>No aplica</option></select></label>
+    <label>Días/semana que habla con su familia<input type="number" id="family_contact_days" min="0" max="7" step="1"></label>
+    <label>Satisfacción con el contacto familiar (0–10)<input type="number" id="family_contact_sat" min="0" max="10"></label>
+    <label>N.º de permisos en últimos 90 días<input type="number" id="leave90" min="0" max="30"></label>
+    <label>Días totales de permiso en últimos 90 días<input type="number" id="leave_days90" min="0" max="90"></label>
+    <label>Días desde el último encuentro presencial con su núcleo familiar<input type="number" id="days_family_seen" min="0" max="3650"></label>
+    <label>Apoyo percibido de familia/personas cercanas (0–10)<input type="number" id="support" min="0" max="10"></label>
+    <label>Calidad de vida actual respecto a antes de la crisis<select id="qol_change"><option value="">Seleccione</option><option value="-3">Mucho peor</option><option value="-2">Bastante peor</option><option value="-1">Algo peor</option><option value="0">Igual</option><option value="1">Algo mejor</option><option value="2">Bastante mejor</option><option value="3">Mucho mejor</option></select></label>
+  </div>
+  <div class="note">La comparación con “antes de la crisis” es una medida retrospectiva de cambio percibido; no sustituye una medición basal precrisis y debe analizarse como tal.</div>
+  <div class="nav"><button class="btn" onclick="prevStep()">Atrás</button><button class="btn primary" onclick="nextStep()">Continuar</button></div>
+</section>
+
+<section class="step" data-step="4" id="s4">
+  <div class="topline"><span class="pill">4 · Cuestionarios breves</span><span class="small">31 ítems</span></div>
+  <h1>Estado psicológico, sueño y calidad de vida</h1>
+  <p class="lead">Mantenga las ventanas temporales indicadas. No se han modificado los ítems de los instrumentos.</p>
+
+  <div class="card" id="pssCard"><h2>PSS-4 · Estrés percibido</h2><div class="small">Durante el último mes. 0=Nunca · 1=Casi nunca · 2=De vez en cuando · 3=A menudo · 4=Muy a menudo</div><div id="pssQs"></div></div>
+  <div class="card" id="gadCard"><h2>GAD-2 · Síntomas de ansiedad</h2><div class="small">Durante las últimas 2 semanas. 0=Nunca · 1=Varios días · 2=Más de la mitad de los días · 3=Casi todos los días</div><div id="gadQs"></div></div>
+  <div class="card" id="batCard"><h2>BAT-12 · Burnout</h2><div class="small">1=Nunca · 2=Raramente · 3=Algunas veces · 4=A menudo · 5=Siempre</div><div id="batQs"></div></div>
+  <div class="card" id="aisCard"><h2>AIS-5 · Insomnio</h2><div class="small">Valore las dificultades de sueño durante el último mes.</div><div id="aisQs"></div></div>
+  <div class="card" id="qolCard"><h2>EUROHIS-QOL-8 · Calidad de vida</h2><div class="small">Teniendo en cuenta las últimas 2 semanas.</div><div id="qolQs"></div></div>
+  <div class="nav"><button class="btn" onclick="prevStep()">Atrás</button><button class="btn primary" onclick="nextStep()">Continuar</button></div>
+</section>
+
+<section class="step" data-step="5" id="s5">
+  <div class="topline"><span class="pill">5 · Atención sostenida</span><span class="small">PVT-B · 3 min</span></div>
+  <h1>Prueba breve de vigilancia psicomotora</h1>
+  <p class="lead">Pulse lo más rápido posible cuando aparezca el contador. No pulse antes. Para investigación, la prueba debe administrarse preferentemente en dispositivos estandarizados.</p>
+  <div class="card">
+    <div class="pvt" id="pvtStage" tabindex="0"><div class="stim" id="stim"></div><div class="msg" id="pvtMsg">Pulse «Iniciar prueba» y mantenga la atención en esta zona.</div></div>
+    <div class="nav"><span class="small">Duración efectiva: 180 s</span><button class="btn primary" id="pvtStart" onclick="startPVT()">Iniciar prueba</button></div>
+    <div class="metrics hidden" id="pvtMetrics"><div class="metric"><span>RT mediana</span><strong id="mMedian">—</strong></div><div class="metric"><span>Lapsos ≥355 ms</span><strong id="mLapses">—</strong></div><div class="metric"><span>Falsas salidas</span><strong id="mFalse">—</strong></div><div class="metric"><span>Variabilidad RT</span><strong id="mCV">—</strong></div></div>
+  </div>
+  <div class="note">La versión de 3 minutos reduce la carga respecto al PVT de 10 minutos, pero no es intercambiable con éste. Se guardan todos los tiempos de reacción ensayo a ensayo para el análisis.</div>
+  <div class="nav"><button class="btn" onclick="prevStep()">Atrás</button><button class="btn primary" id="toResults" onclick="nextStep()" disabled>Ver resultados</button></div>
+</section>
+
+<section class="step" data-step="6" id="s6">
+  <div class="topline"><span class="pill">6 · Resumen individual</span><span class="small">No diagnóstico</span></div>
+  <h1>Resumen de resultados</h1>
+  <p class="lead">La comparación con referencias solo se muestra cuando existe una base defendible. No se etiqueta como “normal/anormal” una variable sin puntos de corte o normas apropiadas.</p>
+  <div id="results"></div>
+  <div class="card">
+    <h2>Fin de la evaluación</h2>
+    <p class="small">El resumen se muestra únicamente en esta pantalla. No se solicita ni se almacena correo electrónico. En la versión desplegada, las respuestas se enviarán a la base de datos central usando exclusivamente el código aleatorio del participante.</p>
+    <div class="nav"><button class="btn" onclick="downloadJSON()">Descargar registro JSON</button><button class="btn primary" onclick="finishStudy()">Finalizar evaluación</button></div>
+    <div id="finishState" class="small" style="margin-top:10px"></div>
+  </div>
+  <div class="footer">HumaLoad-MIL · versión Ceuta. Instrumentos: PSS-4, GAD-2, BAT-12, AIS-5 y EUROHIS-QOL-8. El sistema registra duración total, tiempo por sección, metadatos del dispositivo y datos crudos del PVT-B.</div>
+</section>
+</main>
+<script>
+const studyStart=Date.now(), sectionStarts={}, sectionTimes={}; let step=0; let pvt={running:false,stimOn:false,stimAt:0,started:0,rts:[],falseStarts:0,trials:[],timeout:null,endTimer:null};
+const id=crypto.randomUUID?crypto.randomUUID():('p-'+Date.now()+'-'+Math.random().toString(16).slice(2));
+setInterval(()=>{const s=Math.floor((Date.now()-studyStart)/1000);document.getElementById('timer').textContent=fmt(s)},1000);
+function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function enterSection(n){sectionStarts[n]=performance.now()}
+enterSection(0);
+function leaveSection(n){if(sectionStarts[n]!=null)sectionTimes[n]=(sectionTimes[n]||0)+(performance.now()-sectionStarts[n])/1000}
+function showStep(n){document.querySelectorAll('.step').forEach(x=>x.classList.remove('active'));document.querySelector(`[data-step="${n}"]`).classList.add('active');document.getElementById('bar').style.width=((n)/6*100)+'%';window.scrollTo(0,0);enterSection(n)}
+function nextStep(){if(!validateStep(step))return;leaveSection(step);step=Math.min(6,step+1);if(step===6)renderResults();showStep(step)}
+function prevStep(){leaveSection(step);step=Math.max(0,step-1);showStep(step)}
+function validateStep(n){if(n===0&&!document.getElementById('consent').checked){alert('Debe aceptar el consentimiento para continuar.');return false}if(n===1){for(const x of ['age','sex','unit','category','rank']){if(!document.getElementById(x).value){alert('Complete los campos obligatorios.');return false}}}if(n===4){const missing=[...document.querySelectorAll('#s4 input[type=radio]')].reduce((a,e)=>{a.add(e.name);return a},new Set());const answered=new Set([...document.querySelectorAll('#s4 input[type=radio]:checked')].map(e=>e.name));for(const x of missing)if(!answered.has(x)){alert('Falta responder algún ítem de los cuestionarios.');return false}}if(n===5&&!pvt.completed){alert('Debe completar la prueba de atención antes de continuar.');return false}return true}
+const ranks={"Oficial general":["General de brigada","General de división","Teniente general","General de ejército"],"Oficial":["Alférez","Teniente","Capitán","Comandante","Teniente coronel","Coronel"],"Suboficial":["Sargento","Sargento primero","Brigada","Subteniente","Suboficial mayor"],"Tropa":["Soldado","Cabo","Cabo primero","Cabo mayor"]};
+document.getElementById('category').addEventListener('change',e=>{const r=document.getElementById('rank');r.innerHTML='<option value="">Seleccione</option>'+((ranks[e.target.value]||[]).map(x=>`<option>${x}</option>`).join(''))});
+function mkScale(name,text,opts){return `<div class="q"><p>${text}</p><div class="scale ${opts.length===4?'four':''}">${opts.map(o=>`<label><input type="radio" name="${name}" value="${o.v}"> ${o.t}</label>`).join('')}</div></div>`}
+const pss=["En el último mes, ¿con qué frecuencia se ha sentido incapaz de controlar las cosas importantes de su vida?","En el último mes, ¿con qué frecuencia se ha sentido seguro/a de su capacidad para manejar sus problemas personales?","En el último mes, ¿con qué frecuencia ha sentido que las cosas le iban bien?","En el último mes, ¿con qué frecuencia ha sentido que las dificultades se acumulaban tanto que no podía superarlas?"];
+const pssOpts=[0,1,2,3,4].map((v,i)=>({v,t:["Nunca","Casi nunca","De vez en cuando","A menudo","Muy a menudo"][i]}));
+document.getElementById('pssQs').innerHTML=pss.map((q,i)=>mkScale('pss'+i,q,pssOpts)).join('');
+const gad=["Sentirse nervioso/a, ansioso/a o con los nervios de punta.","No poder dejar de preocuparse o no poder controlar la preocupación."];
+const gadOpts=[0,1,2,3].map((v,i)=>({v,t:["Nunca","Varios días","Más de la mitad de los días","Casi todos los días"][i]}));
+document.getElementById('gadQs').innerHTML=gad.map((q,i)=>mkScale('gad'+i,q,gadOpts)).join('');
+const bat=["En mi trabajo, me siento agotado/a mentalmente.","Al final del día de trabajo, me resulta difícil recuperar mi energía.","Me siento físicamente agotado/a en mi trabajo.","Me esfuerzo por encontrar entusiasmo en mi trabajo.","Siento una fuerte aversión hacia mi trabajo.","Soy cínico sobre lo que mi trabajo significa para los demás.","Tengo problemas para mantenerme enfocado en mi trabajo.","Cuando estoy trabajando, tengo dificultades para concentrarme.","Cometo errores en mi trabajo, porque tengo mi mente en otras cosas.","En mi trabajo, me siento incapaz de controlar mis emociones.","No me reconozco en la forma que reacciono en el trabajo.","Puedo reaccionar exageradamente sin querer."];
+const batOpts=[1,2,3,4,5].map((v,i)=>({v,t:["Nunca","Raramente","Algunas veces","A menudo","Siempre"][i]}));
+document.getElementById('batQs').innerHTML=bat.map((q,i)=>mkScale('bat'+i,q,batOpts)).join('');
+const ais=[
+ ["Inducción del sueño (tiempo que tarda en dormirse después de apagar la luz)",["Ningún problema","Ligeramente retrasado","Marcadamente retrasado","Muy retrasado o no durmió"]],
+ ["Despertares durante la noche",["Ningún problema","Problema menor","Problema considerable","Problema serio o no durmió"]],
+ ["Despertar final antes de lo deseado",["No fue antes","Un poco antes","Notablemente antes","Mucho antes o no durmió"]],
+ ["Duración total del sueño",["Suficiente","Ligeramente insuficiente","Notablemente insuficiente","Muy insuficiente o no durmió"]],
+ ["Calidad del sueño en general",["Satisfactoria","Ligeramente insatisfactoria","Notablemente insatisfactoria","Muy insatisfactoria o no durmió"]]
+];
+document.getElementById('aisQs').innerHTML=ais.map((a,i)=>mkScale('ais'+i,a[0],a[1].map((t,v)=>({v,t})))).join('');
+const qol=[
+ ["¿Cómo calificaría su calidad de vida?",["Muy mala","Mala","Ni buena ni mala","Buena","Muy buena"]],
+ ["¿Qué tan satisfecho/a está con su salud?",["Muy insatisfecho/a","Insatisfecho/a","Ni satisfecho/a ni insatisfecho/a","Satisfecho/a","Muy satisfecho/a"]],
+ ["¿Tiene suficiente energía para la vida diaria?",["Nada","Un poco","Moderadamente","Bastante","Completamente"]],
+ ["¿Qué tan satisfecho/a está con su capacidad para realizar sus actividades de la vida diaria?",["Muy insatisfecho/a","Insatisfecho/a","Ni satisfecho/a ni insatisfecho/a","Satisfecho/a","Muy satisfecho/a"]],
+ ["¿Qué tan satisfecho/a está con usted mismo/a?",["Muy insatisfecho/a","Insatisfecho/a","Ni satisfecho/a ni insatisfecho/a","Satisfecho/a","Muy satisfecho/a"]],
+ ["¿Qué tan satisfecho/a está con sus relaciones personales?",["Muy insatisfecho/a","Insatisfecho/a","Ni satisfecho/a ni insatisfecho/a","Satisfecho/a","Muy satisfecho/a"]],
+ ["¿Tiene suficiente dinero para cubrir sus necesidades?",["Nada","Un poco","Moderadamente","Bastante","Completamente"]],
+ ["¿Qué tan satisfecho/a está con las condiciones del lugar donde vive?",["Muy insatisfecho/a","Insatisfecho/a","Ni satisfecho/a ni insatisfecho/a","Satisfecho/a","Muy satisfecho/a"]]
+];
+document.getElementById('qolQs').innerHTML=qol.map((a,i)=>mkScale('qol'+i,a[0],a[1].map((t,k)=>({v:k+1,t})))).join('');
+function getRadio(prefix,n){return Array.from({length:n},(_,i)=>+document.querySelector(`input[name="${prefix}${i}"]:checked`).value)}
+function scores(){const P=getRadio('pss',4); const G=getRadio('gad',2); const B=getRadio('bat',12); const A=getRadio('ais',5); const Q=getRadio('qol',8);return {pss:P[0]+(4-P[1])+(4-P[2])+P[3],gad:G.reduce((a,b)=>a+b,0),bat_mean:B.reduce((a,b)=>a+b,0)/12,bat_exhaustion:mean(B.slice(0,3)),bat_distance:mean(B.slice(3,6)),bat_cognitive:mean(B.slice(6,9)),bat_emotional:mean(B.slice(9,12)),ais:A.reduce((a,b)=>a+b,0),qol:mean(Q),raw:{pss:P,gad:G,bat:B,ais:A,qol:Q}}}
+function mean(a){return a.reduce((x,y)=>x+y,0)/a.length}
+function sd(a){if(a.length<2)return 0;const m=mean(a);return Math.sqrt(a.reduce((s,x)=>s+(x-m)**2,0)/(a.length-1))}
+function pssRef(v){const age=+document.getElementById('age').value,sex=document.getElementById('sex').value;let q1=3,q3=7;if(age>=18&&age<=29){q1=4;q3=8}else if(age>=30&&age<=64){q1=3;q3=7}if(sex==='Mujer'&&q3===7)q3=8; if(v<=q1)return `En el cuartil inferior de estrés percibido de la referencia española comparable (≤${q1}).`;if(v>=q3)return `En el cuartil superior de estrés percibido de la referencia española comparable (≥${q3}).`;return 'Dentro del intervalo intercuartílico de la referencia española comparable.'}
+function pvtSummary(){const r=pvt.rts.filter(x=>x>=100);const sorted=[...r].sort((a,b)=>a-b);const med=sorted.length?sorted[Math.floor(sorted.length/2)]:null;const lapses=r.filter(x=>x>=355).length;const validFast=r.filter(x=>x<355);const m=validFast.length?mean(validFast):null;const cv=validFast.length>1?sd(validFast)/m:null;const respSpeed=r.length?mean(r.map(x=>1000/x)):null;const perf=(pvt.trials.length+pvt.falseStarts)>0?100*(1-(lapses+pvt.falseStarts)/(pvt.trials.length+pvt.falseStarts)):null;return {median_rt_ms:med,mean_rt_ms:r.length?mean(r):null,response_speed:respSpeed,lapses_355:lapses,false_starts:pvt.falseStarts,cv_rt:cv,performance_score:perf,n_valid:r.length}}
+function startPVT(){if(pvt.running)return;pvt={...pvt,running:true,completed:false,stimOn:false,started:performance.now(),rts:[],falseStarts:0,trials:[]};document.getElementById('pvtStart').disabled=true;document.getElementById('pvtMsg').textContent='Espere al estímulo. Pulse la barra espaciadora o toque la zona cuando aparezca el contador.';document.getElementById('pvtStage').focus();scheduleStim();pvt.endTimer=setTimeout(endPVT,180000)}
+function scheduleStim(){if(!pvt.running)return;document.getElementById('stim').textContent='';pvt.stimOn=false;const delay=2000+Math.random()*3000;pvt.timeout=setTimeout(()=>{if(!pvt.running)return;pvt.stimOn=true;pvt.stimAt=performance.now();document.getElementById('stim').textContent='000';},delay)}
+function respond(){if(!pvt.running)return;const now=performance.now();if(!pvt.stimOn){pvt.falseStarts++;document.getElementById('pvtMsg').textContent='Respuesta anticipada. Espere al estímulo.';clearTimeout(pvt.timeout);setTimeout(scheduleStim,700);return}const rt=now-pvt.stimAt;pvt.stimOn=false;if(rt<100)pvt.falseStarts++;else{pvt.rts.push(rt);pvt.trials.push({t_s:(now-pvt.started)/1000,rt_ms:rt,lapse355:rt>=355})}document.getElementById('stim').textContent=Math.round(rt);document.getElementById('pvtMsg').textContent='';setTimeout(scheduleStim,700)}
+document.getElementById('pvtStage').addEventListener('pointerdown',respond);window.addEventListener('keydown',e=>{if(e.code==='Space'&&pvt.running){e.preventDefault();respond()}});
+function endPVT(){pvt.running=false;pvt.completed=true;clearTimeout(pvt.timeout);document.getElementById('stim').textContent='Fin';document.getElementById('pvtMsg').textContent='Prueba completada.';const s=pvtSummary();document.getElementById('mMedian').textContent=s.median_rt_ms?Math.round(s.median_rt_ms)+' ms':'—';document.getElementById('mLapses').textContent=s.lapses_355;document.getElementById('mFalse').textContent=s.false_starts;document.getElementById('mCV').textContent=s.cv_rt!=null?s.cv_rt.toFixed(2):'—';document.getElementById('pvtMetrics').classList.remove('hidden');document.getElementById('toResults').disabled=false}
+function collect(){leaveSection(step);const s=scores(),pv=pvtSummary();const vals={};document.querySelectorAll('#s1 input,#s1 select,#s2 input,#s2 select,#s3 input,#s3 select').forEach(e=>{if(e.id)vals[e.id]=e.value});return {study:'HumaLoad-MIL Ceuta',version:'2026-10-01-no-email',participant_id:id,started_at:new Date(studyStart).toISOString(),completed_at:new Date().toISOString(),total_duration_s:(Date.now()-studyStart)/1000,section_duration_s:sectionTimes,profile_exposure:vals,scores:s,pvt:pv,pvt_trials:pvt.trials,device:{user_agent:navigator.userAgent,language:navigator.language,screen:`${screen.width}x${screen.height}`,pixel_ratio:devicePixelRatio,touch_points:navigator.maxTouchPoints||0,hardware_concurrency:navigator.hardwareConcurrency||null}}}
+function renderResults(){const s=scores(),pv=pvtSummary();const box=document.getElementById('results');box.innerHTML='';const items=[];items.push(['Estrés percibido · PSS-4',`${s.pss}/16`,pssRef(s.pss)]);items.push(['Ansiedad · GAD-2',`${s.gad}/6`,s.gad>=3?'La puntuación alcanza el umbral orientativo de cribado usado en la validación española. No equivale a un diagnóstico.':'La puntuación queda por debajo del umbral orientativo de cribado usado en la validación española.']);items.push(['Burnout · BAT-12',s.bat_mean.toFixed(2)+'/5','Puntuación media de síntomas de burnout. Se informa de forma descriptiva; no se clasifica como normal/anormal porque no se aplican aquí puntos de corte clínicos específicos para personal militar español.']);items.push(['Sueño · AIS-5',`${s.ais}/15`,'Mayor puntuación indica más dificultades nocturnas de sueño. Se evita aplicar un punto de corte diagnóstico no establecido de forma específica para esta versión y población.']);items.push(['Calidad de vida · EUROHIS-QOL-8',s.qol.toFixed(2)+'/5','Mayor puntuación indica mejor calidad de vida percibida. Se informa de forma descriptiva y debe interpretarse junto con la referencia poblacional elegida en el protocolo.']);items.push(['Atención sostenida · PVT-B',`${Math.round(pv.median_rt_ms||0)} ms mediana`,`${pv.lapses_355} lapsos (≥355 ms), ${pv.false_starts} falsas salidas. La interpretación depende del dispositivo, condiciones de administración y referencia del estudio; no es una prueba diagnóstica.`]);for(const x of items)box.innerHTML+=`<div class="result"><div class="small">${x[0]}</div><div class="score">${x[1]}</div><p>${x[2]}</p></div>`}
+function finishStudy(){document.getElementById('finishState').textContent='Evaluación finalizada. El resumen permanece visible en esta pantalla.'}
+function downloadJSON(){const rec=collect();const b=new Blob([JSON.stringify(rec,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`HumaLoadMIL_${id}.json`;a.click();URL.revokeObjectURL(a.href)}
+</script>
+</body>
+</html>
