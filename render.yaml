@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: ceuta-militares
+    runtime: node
+    plan: free
+    region: frankfurt
+    rootDir: ceuta-militares
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeployTrigger: off
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ceuta-militares-db
+          property: connectionString
+      - key: ADMIN_KEY
+        generateValue: true
+
+databases:
+  - name: ceuta-militares-db
+    plan: free
+    region: frankfurt
+    databaseName: ceuta_militares
+    user: ceuta_app
